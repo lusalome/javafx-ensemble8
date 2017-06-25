@@ -72,23 +72,23 @@ public class DocsPage extends Region implements ChangeListener<String>, Page{
         webView.getEngine().locationProperty().addListener(this);
     }
 
-    @Override public ReadOnlyStringProperty titleProperty() {
+    public ReadOnlyStringProperty titleProperty() {
         return webView.getEngine().titleProperty();
     }
 
-    @Override public String getTitle() {
+    public String getTitle() {
         return webView.getEngine().getTitle();
     }
 
-    @Override public String getUrl() {
+    public String getUrl() {
         return webView.getEngine().getLocation();
     }
 
-    @Override public Node getNode() {
+    public Node getNode() {
         return this;
     }
 
-    @Override public void changed(ObservableValue<? extends String> ov, String oldLocation, String newLocation) {
+    public void changed(ObservableValue<? extends String> ov, String oldLocation, String newLocation) {
         if (!isLocalChange) pageBrowser.externalPageChange(newLocation);
         updateSidebar(newLocation);
     }

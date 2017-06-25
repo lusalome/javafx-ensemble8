@@ -48,7 +48,7 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.grouping.GroupDocs;
 import org.apache.lucene.search.grouping.SearchGroup;
-import org.apache.lucene.search.grouping.SecondPassGroupingCollector;
+import org.apache.lucene.search.grouping.TermSecondPassGroupingCollector;
 import org.apache.lucene.search.grouping.TopGroups;
 import org.apache.lucene.util.Version;
 
@@ -56,7 +56,7 @@ import org.apache.lucene.util.Version;
  * Class for searching the index
  */
 public class IndexSearcher {
-    private final static List<SearchGroup> searchGroups = new ArrayList<>();
+    private final static List<SearchGroup<String>> searchGroups = new ArrayList<>();
     static {
         for (DocumentType dt: DocumentType.values()){
             SearchGroup searchGroup = new SearchGroup();
@@ -83,12 +83,12 @@ public class IndexSearcher {
         Map<DocumentType, List<SearchResult>> resultMap = new EnumMap<>(DocumentType.class);
         try {
             Query query = parser.parse(searchString);
-            final SecondPassGroupingCollector collector = new SecondPassGroupingCollector("documentType", searchGroups,
+            final TermSecondPassGroupingCollector collector = new TermSecondPassGroupingCollector("documentType", searchGroups,
                     Sort.RELEVANCE, Sort.RELEVANCE, 10, true, false, true);
             searcher.search(query, collector);
             final TopGroups groups = collector.getTopGroups(0);
             for (GroupDocs groupDocs : groups.groups) {
-                DocumentType docType = DocumentType.valueOf(groupDocs.groupValue);
+                DocumentType docType = DocumentType.valueOf(groupDocs.groupValue.toString());
                 List<SearchResult> results = new ArrayList<>();
                 for (ScoreDoc scoreDoc : groupDocs.scoreDocs) {
                     if ((Platform.isSupported(ConditionalFeature.WEB)) || (docType != DocumentType.DOC)) {
