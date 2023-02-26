@@ -1,7 +1,10 @@
-# javafx-ensemble8
+# 概述
+此项目是javafx-ensemble8的汉化版本
 
+# 运行项目
+1. clone项目到本地
+2. 使用maven打包(直接执行无法显示源码,原因是打包后没有将java文件打包到target中,查看源码的时候无法找到源码文件)
+3. 运行ensemble.EnsembleApp.main
 
-Ensemble provides a gallery of over 100 sample applications that use a wide range of JavaFX features, such as graphics, UI controls, animation, charts, media and WebView. Source code for each sample and links to API documentation are also provided. Ensemble will provide developers with an interactive reference tool for what they can build with JavaFX.
-
-
-![](http://i.imgur.com/MwXXkgL.jpg)
+# 汉化
+准备在2.0中完成

@@ -18,6 +18,36 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
+                    <include>**/*.fdt</include>
+                    <include>**/*.fdx</include>
+                    <include>**/*.fnm</include>
+                    <include>**/*.frq</include>
+                    <include>**/*.nrm</include>
+                    <include>**/*.prx</include>
+                    <include>**/*.tii</include>
+                    <include>**/*.tis</include>
+                    <include>**/*.jpg</include>
+                    <include>**/*.fxml</include>
+                    <include>**/*.wav</include>
+                    <include>**/*.gif</include>
+                    <include>**/*.gen</include>
+                    <include>**/*.js</include>
+                    <include>**/segments_1</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
     <properties>
